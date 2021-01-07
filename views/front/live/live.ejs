@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Konferans</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="../../../live/simplewebrtc-with-adapter.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <style>
+        #remoteVideos video {
+            width: 25%;
+        }
+        #localVideo {
+            width: 100%;
+            height: 300px;
+        }
+        #localScreen{
+            width: 300px;
+            height: 300px;
+        }
+        </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <video id="localVideo"></video>
+        <div id="remoteVideos"></div>
+        <button class="btn btn-success" id="start">Başla</button>
+        <button class="btn btn-success" id="pause">Durdur</button>
+        <button class="btn btn-success" id="resume">Devam Et</button>
+        <button class="btn btn-success" id="leave">Ayrıl</button>
+        <button class="btn btn-success" id="screenControl">Ekran Paylaş</button>
+        <button class="btn btn-success" id="joinRoom">Odaya Gir</button>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+var webrtc = new SimpleWebRTC({
+    localVideoEl: 'localVideo',
+    remoteVideosEl: 'remoteVideos',
+    autoRequestMedia: false,
+    nick: {
+        userid: '',
+        username: 'mertcanarguc',
+        realname: '',
+        role: '',
+    }
+});
+
+webrtc.on('connectionReady', function(sessionId) {
+    console.log(sessionId)
+    console.log(webrtc.config.nick)
+    console.log(webrtc.peers)
+    webrtc.on('readyToCall', function() {
+        webrtc.joinRoom('room');
+    });
+
+    $('document').ready(function() {
+        $('#start').click(() => {
+            webrtc.startLocalVideo()
+        })
+
+        $('#pause').click(() => {
+            webrtc.pauseVideo()
+            webrtc.mute()
+        })
+
+        $('#resume').click(() => {
+            webrtc.resumeVideo()
+            webrtc.unmute()
+        })
+
+        $('#leave').click(() => {
+            webrtc.leaveRoom()
+        })
+
+        $('#joinRoom').click(()=>{
+            webrtc.joinRoom('room');
+        })
+
+        $("#screenControl").click(function() {
+            if (webrtc.getLocalScreen() !== undefined) {
+                webrtc.stopScreenShare();
+            } else {
+
+                webrtc.shareScreen({
+                    video: {
+                        cursor: "always"
+                    },
+                    audio: {
+                        echoCancellation: true,
+                        noiseSuppression: true,
+                        sampleRate: 44100
+                    }
+                }, (err) => {
+
+                });
+            }
+        });
+    })
+});
+</script>

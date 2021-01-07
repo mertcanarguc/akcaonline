@@ -1,0 +1,39 @@
+<% layout("layout") %>
+
+<main>
+    <section class="fullwidth-background bg-2">
+        <div class="grid-row">
+            <div class="login-block">
+                <div class="logo">
+                    <img src="../../../front/img/logo.png" style="max-height: 100px;">
+                    <h2>GİRİŞ</h2>
+                </div>
+                <!-- <a href="#" class="facebook cws-button border-radius half-button">Facebook</a>
+                <a href="#" class="twitter cws-button border-radius half-button">Twitter</a> -->
+                <!-- <div class="clear-both"></div>
+                <div class="login-or">
+                    <hr class="hr-or">
+                    <span class="span-or">or</span>
+                </div> -->
+                <form class="login-form" action="/users/login" method="post">
+                    
+                    <div class="form-group">
+                        <input type="email" name="username" class="form-control" placeholder="Kullanıcı Adı">
+                        <span class="input-icon">
+                            <i class="fa fa-user"></i>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Şifre">
+                        <span class="input-icon">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </div>
+                    <button type="submit" class="button-fullwidth cws-button bt-color-3 border-radius alt">GİRİŞ YAP</button>
+                    <a href="/users/register"
+                        class="button-fullwidth cws-button bt-color-3 border-radius">KAYIT OL</a>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
