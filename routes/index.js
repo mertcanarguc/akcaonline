@@ -46,5 +46,8 @@ router.get("/kullanici",function (req,res,next) {
   res.render("front/sozlesme/kullanici")
 })
 
+router.get("/sorucozumleri",function (req,res,next) {
+  res.render("front/cozum/cozum")
+})
 
 module.exports = router;
