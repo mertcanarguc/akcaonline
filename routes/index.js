@@ -34,5 +34,17 @@ router.get('/kampp',async(req,res,next)=>{
   })
 })
 
+router.get("/gizlilik",function (req,res,next) {
+  res.render("front/sozlesme/gizlilik")
+})
+
+router.get("/mesafeli",function (req,res,next) {
+  res.render("front/sozlesme/mesafeli")
+})
+
+router.get("/kullanici",function (req,res,next) {
+  res.render("front/sozlesme/kullanici")
+})
+
 
 module.exports = router;
