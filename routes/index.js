@@ -53,4 +53,9 @@ router.get("/sorucozumleri",function (req,res,next) {
 router.get("/kitap",function (req,res,next) {
   res.render("front/kitap")
 })
+
+router.get("/sss",function(req,res,next) {
+  res.render("front/sss")
+})
+
 module.exports = router;
