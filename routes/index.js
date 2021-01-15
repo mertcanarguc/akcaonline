@@ -88,4 +88,8 @@ router.get("/sss", function (req, res, next) {
   res.render("front/sss")
 })
 
+router.get("/hakkimizda",function (req,res,next) {
+  res.render("front/sozlesme/hakkimizda")
+})
+
 module.exports = router;
