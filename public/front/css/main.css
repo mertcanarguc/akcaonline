@@ -9010,7 +9010,7 @@ abbr{
 }
 .fullwidth-background.bg-2:before {
 	position: absolute;
-	background-position: cover;
+	background-position: contain;
 	z-index: 1;
 	content: "";
 	display: block;
@@ -9019,7 +9019,7 @@ abbr{
 	right: 0;
 	left: 0;
 	opacity: 0.9;
-	background-image: url(../img/math.jpg);
+	background-image: url(../../front/backkk.png);
 	background-repeat: repeat;
 }
 .login-block {

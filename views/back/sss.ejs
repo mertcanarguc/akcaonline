@@ -1,0 +1,25 @@
+<%= layout("layout") %>
+
+    <section class="panel">
+        <header class="panel-heading">
+            Sıkça Sorulan Sorular
+        </header>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Soru</th>
+                        <th>Cevap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% sss.forEach(element=> { %>
+                        <tr>
+                            <td style="text-transform: capitalize;"><%= element.soru %></td>
+                            <td style="text-transform: capitalize;"><%= element.cevap %></td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </section>

@@ -1,0 +1,134 @@
+<% layout("../layout") %>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous"></script>
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous"></script>
+
+    <div id="app">
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                    <!-- <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a> -->
+                </div>
+                <h2 class="panel-title">KİTAP EKLE</h2>
+            </header>
+            <div class="panel-body">
+                    <div class="form-group col-md-6">
+                        <label>Kitap Adı</label>
+                        <input type="text" class="form-control" v-model="title" placeholder="Kitap Adı">
+                        {{title}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Kitap Fiyatı</label>
+                        <input type="number" class="form-control" v-model="price" placeholder="Kitap Fiyatı">
+                        {{price}}
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Kitap Hakkında Kısa Bilgi</label>
+                        <textarea v-model="desc" id="" cols="30" rows="5" class="form-control"
+                            placeholder="Kitap Hakkında Kısa Bilgi"></textarea>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Kitap Fotoğrafı</label>
+                        <a class="btn btn-primary btn-md" style="height: 100%;" id="upload_widget">FOTOĞRAF SEÇ</a>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <a @click="ekle()" class="btn btn-success pull-right">KİTABI EKLE</a>
+                    </div>
+            </div>
+        </section>
+
+        <section class="panel">
+            <header class="panel-heading">
+                <div class="panel-actions">
+                    <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                </div>
+                <h2 class="panel-title">KİTAPLAR</h2>
+            </header>
+            <div class="panel-body">
+
+                <table class="table table-hover" id="datatable-default">
+                    <thead>
+                        <tr>
+                            <th>BAŞLIK</th>
+                            <th>AÇIKLAMA</th>
+                            <th>FİYAT</th>
+                            <th>FOTO</th>
+                            <th> - - - - </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% egitim.forEach(element=> { %>
+                            <tr>
+                                <td>
+                                    <%= element.title %>
+                                </td>
+                                <td>
+                                    <%= element.desc %>
+                                </td>
+                                <td>
+                                    <%= element.price %>
+                                </td>
+                                <td>
+                                    <img src="<%= element.kapak %>" style="height: 100px;">
+                                </td>
+                                <td> <a class="btn btn-sm btn-danger"
+                                        href="/admin/egitim/delete/<%= element._id %>">SİL</a> </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                title: null,
+                desc: null,
+                price: null,
+                kapak: null
+            },
+            methods: {
+                ekle() {
+                    axios.post("/admin/egitim/insert", {
+                        title: this.title,
+                        desc: this.desc,
+                        price: this.price,
+                        kapak: window.a
+                    }).then(response => {
+                        if (response.data.status == true) {
+                            swal("Başarılı !", "Tebrikler ürünü başarıyla eklediniz :)", "success");
+                            window.location.reload()
+                        } 
+                    })
+                }
+            }
+        })
+    </script>
+    <script>
+        window.a = ""
+        var myWidget = cloudinary.createUploadWidget(
+            {
+                cloudName: 'webmasteradam',
+                uploadPreset: 'ml_default'
+            }, (error, result) => {
+                if (!error && result && result.event === "success") {
+                    console.log(result.info.secure_url)
+                    window.a = result.info.secure_url
+                }
+            }
+        )
+        document.getElementById("upload_widget").addEventListener("click", function () {
+            myWidget.open();
+        }, false);
+    </script>

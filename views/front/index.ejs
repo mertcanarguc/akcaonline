@@ -1,26 +1,255 @@
 <% layout("layout") %>
 
-
-<style>
-	body {
-		background-color: orange;
-	}
-</style>
-
-
-<div class="container-fluid">
-	<br><br>
-	<div class="row">
-		<div class="col-md-7">
-			<h1 class="text-center" style="padding-top: 10vh;">YKS Matematik ve Geometri için Online Eğitim Setleri</h1>
-			<p class="text-center">Lise Matematiğinin en çok zorlanılan konularının kitabını yazdık.Bunların tamamını da
-				video eğitim haline getirdik ! Hem konu anlatımı hem soru çözümü.</p>
-				<br><br>
-			<a href="/sorucozumleri" class="btn btn-primary btn-lg" style="margin-left: 10vh;">EĞİTİMLERİMİZİ İNCELE</a>
-			<a href="/kitap" class="btn btn-primary btn-lg" style="margin-left: 10vh;">KİTAPLARIMIZI İNCELE</a>
-		</div>
-		<div class="col-md-5">
-			<img src="../../kapak.png" class="img-responsive" alt="">
+<!-- section -->
+<div class="tp-banner-container">
+	<img src="../../../front/kapak2.jpeg" style="width: 100%; height: auto; object-fit: cover;" >
+</div>
+<!-- / revolution slider -->
+<hr class="divider-color">
+<!-- content -->
+<section class="padding-section">
+	<div class="grid-row clear-fix">
+		<h2 class="center-text">Eğitim Setlerimiz</h2>
+		<div class="grid-col-row">
+			<% set.forEach(element => { %>
+				<div class="grid-col grid-col-3">
+					<!-- course item -->
+					<div class="course-item">
+						<div class="course-hover">
+							<img src="<%= element.kapak %>" alt>
+							<div class="hover-bg bg-color-1"></div>
+							<a href="#">Satın Al</a>
+						</div>
+						<div class="course-name clear-fix">
+							<span class="price"> <b><%= element.fiyat %></b> ₺ </span>
+						<h3><a href="#"><%= element.title %></a></h3>
+							</div>
+					</div>
+				</div>
+			<% }) %>
 		</div>
 	</div>
-<br><br><br>
+</section>
+<hr class="divider-color" />
+<section class="padding-section">
+	<div class="grid-row clear-fix">
+		<h2 class="center-text">Kitaplarımız</h2>
+		<div class="grid-col-row">
+			<% kitap.forEach(element => { %>
+				<div class="grid-col grid-col-3">
+					<!-- course item -->
+					<div class="course-item">
+						<div class="course-hover">
+							<img src="<%= element.kapak %>" style="object-fit: cover;">
+							<div class="hover-bg bg-color-1"></div>
+							<a href="/kitap/<%= element._id %>">İNCELE</a>
+						</div>
+						<div class="course-name clear-fix">
+							<span class="price"> <b><%= element.price-10%> ₺</b> </span>
+						<h3><a href="#"><%= element.title %></a></h3>
+							</div>
+					</div>
+				</div>
+			<% }) %>
+		</div>
+	</div>
+</section>
+<hr class="divider-color" />
+<section class="padding-section">
+	<div class="grid-row clear-fix">
+		<h2 class="center-text">Çözüm Videoları</h2>
+		<div class="grid-col-row">
+			<% video.forEach(element => { %>
+				<div class="grid-col grid-col-3">
+					<!-- course item -->
+					<div class="course-item">
+						<div class="course-hover">
+							<img src="<%= element.kapak %>" style="object-fit: cover;">
+							<div class="hover-bg bg-color-1"></div>
+							<a href="/video/<%= element._id %>">Satın Al</a>
+						</div>
+						<div class="course-name clear-fix">
+							<span class="price"> <b><%= element.fiyat %></b> ₺ </span>
+						<h3><a href="/video/<%= element._id %>"><%= element.title %> </a></h3>
+							</div>
+					</div>
+				</div>
+			<% }) %>
+		</div>
+	</div>
+</section>
+<hr class="divider-color" />
+<!-- paralax section -->
+<div class="parallaxed">
+	<div class="parallax-image" data-parallax-left="0.5" data-parallax-top="0.3" data-parallax-scroll-speed="0.5">
+		<img src="../../../front/img/parallax.png" alt="">
+
+	</div>
+	<div class="them-mask bg-color-3"></div>
+	<div class="grid-row">
+		<div class="grid-col-row clear-fix">
+			<div class="grid-col grid-col-4 alt">
+				<div class="counter-block">
+					<i class="flaticon-camera"></i>
+					<div class="counter" data-count="656">0</div>
+					<div class="counter-name">Video Eğitim</div>
+				</div>
+			</div>
+			<div class="grid-col grid-col-4 alt">
+				<div class="counter-block">
+					<i class="flaticon-book1"></i>
+					<div class="counter" data-count="5">0</div>
+					<div class="counter-name">Kitap Destekli</div>
+				</div>							
+			</div>
+			<div class="grid-col grid-col-4 alt">
+				<div class="counter-block">
+					<i class="flaticon-users"></i>
+					<div class="counter" data-count="1813">0</div>
+					<div class="counter-name">Kullanıcı Sayısı</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- / paralax section -->
+<hr class="divider-color"/>
+<!-- paralax section -->
+<section class="fullwidth-background padding-section">
+	<div class="grid-row clear-fix">
+		<h2 class="center-text">SIKÇA SORULAN SORULAR</h2>
+		<div class="grid-col-row">
+			<div class="grid-col grid-col-6">
+				<section class="padding-top-none">
+                    <h2>Merak ettikleriniz</h2>
+                    <!-- accordions -->
+                    <div class="accordions">
+                        <!-- content-title -->
+                        <div class="content-title active">YKS Setleri Ne zamana Kadar Geçerli ?
+                        </div>
+                        <!--/content-title -->
+                        <!-- accordions content -->
+                        <div class="content">Video eğitimleri satın aldığınız günden itibaren 1 yıl boyunca erişim sağlayabilirsiniz.
+                        </div>
+                        <!--/accordions content -->
+                        <!-- content-title -->
+                        <div class="content-title">Kitaplar tarafıma nasıl ulaşacak ?
+                        </div>
+                        <!--/content-title -->
+                        <!-- accordions content -->
+                        <div class="content">Aras kargo vasıtasıyla en geç 3 iş günü içinde adresinize teslim edilecektir.
+                        </div>
+                        <!--/accordions content -->
+                        <!-- content-title -->
+                        <div class="content-title">Kitap ve Video Eğitimin Ücreti Ayrı mı ? 
+                        </div>
+                        <!--/content-title -->
+                        <!-- accordions content -->
+                        <div class="content">Evet,Yalnızca kitap sipariş etmek isteyenler kitaplarımızı yalnızca eğitim videolarını sipariş etmek isteyenler eğitim videolarını isteyenler de hem video hem eğitimleri sipariş edebilecekler.
+                        </div>
+                        <!--/accordions content -->
+                        <!-- content-title -->
+                        <div class="content-title">Video eğitim setlerini alanlara özel içerikler olacak mı ?
+                        </div>
+                        <!--/content-title -->
+                        <!-- accordions content -->
+                        <div class="content">Evet,online dersler,beraber deneme çözme etkinlikleri gibi setlerimizi alan öğrencileri özel çalışmalarla sürekli destekleyeceğiz.
+                        </div>
+                        <!--/accordions content -->
+                        <!-- content-title -->
+                        <div class="content-title">Videolarda anlamadığım,takıldığım yer olursa ne yapacağım ?
+                        </div>
+                        <!--/content-title -->
+                        <!-- accordions content -->
+                        <div class="content">Bizlere 7/24 WP hattımız üzerinden ulaşabilir tüm sorularınızı sorabilirsiniz.
+                        </div>
+                        <!--/accordions content -->
+                        <!-- content-title -->
+                        <div class="content-title">Kitaplara video eğitimlerle beraber nasıl çalışacağım ? 
+                        </div>
+                        <!--/content-title -->
+                        <!-- accordions content -->
+                        <div class="content">Tüm kitapların nasıl çalışılması gerektiği ve görevlendirmesi ilgili eğitimin ilk videosunda tarafımızca yapılıyor derslerin eğitimlerini izlerken eğitimci tarafından tüm yönlendirme ve yönergeleri yerine getirmeniz yeterli.
+                        </div>
+                        <!--/accordions content -->
+                        <!-- content-title -->
+                        <div class="content-title">Videoların izlenme sayısı/sınırı var mı ?
+                        </div>
+                        <!--/content-title -->
+                        <!-- accordions content -->
+                        <div class="content">Hayır yok.Eğitiminizi satın aldıktan sonra istediğiniz sayıda tekrar tekrar 1 yıl boyunca izleyebilirsiniz.
+                        </div>
+                        <!--/accordions content -->
+                    </div>
+                    <!-- accordions -->
+                </section>
+			</div>
+			<div class="grid-col grid-col-6">
+				<div class="owl-carousel full-width-slider">
+					<div class="gallery-item picture">
+						<img src="../../../anagaleri/1.jpeg" alt>
+					</div>
+					<div class="gallery-item picture">
+						<img src="../../../anagaleri/2.jpeg" alt>
+					</div>
+					<div class="gallery-item picture">
+						<img src="../../../anagaleri/3.jpeg" alt>
+					</div>
+					<div class="gallery-item picture">
+						<img src="../../../anagaleri/4.jpeg" alt>
+					</div>
+					<div class="gallery-item picture">
+						<img src="../../../anagaleri/5.jpeg" alt>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- parallax section -->
+<hr class="divider-color" />
+<!-- section -->
+<section class="padding-section">
+	<div class="grid-row clear-fix">
+		<div class="grid-col-row">
+			<div class="grid-col grid-col-6">
+				<div class="video-player">
+					<iframe src="../../../akcavideo.mp4"></iframe>
+				</div>
+			</div>
+			<div class="grid-col grid-col-6 clear-fix">
+				<h2>Tanıtım Videomuzu İzleyiniz</h2>
+				<p>Donec sollicitudin lacus in felis luctus blandit. Ut hendrerit mattis justo at susp. Vivamus orci urna, ornare vitae tellus in, condimentum imperdiet eros. Maecea accumsan, massa nec vulputate congue.</p>
+				<p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- / section -->
+<hr class="divider-color" />
+<!-- section -->
+<section class="fullwidth-background testimonial padding-section">
+	<div class="grid-row">
+		<h2 class="center-text">ÖĞRENCİLERİMİZİN YORUMLARI</h2>
+		<div class="owl-carousel testimonials-carousel">
+			<div class="gallery-item">
+				<div class="quote-avatar-author clear-fix">
+					<!-- <img src="../../../front/pic/94x94-img-1.jpg" alt=""> -->
+					<div class="author-info">Zeynep Şahin<br><span>Öğrenci</span></div></div>
+				<p>Öncelikle bizi böylesine çok  düşündüğünüz için daha sonra bizim de düşüncelerimizi önemsediğiniz için yine daha sonrasında böyle bir platformu bizler için var ettiğiniz için İbrahim hocam başta size ve diğer değerli öğretmenlerime teşekkür ediyorum. Matematiğe  bunun yanında konulara olan önyargıları yıkmak öğrencilere bu işi, dersi sevdirmek tamamen size verilmiş işinizi hakkıyla yapan bu güzel insaları daha iyi yerlerde hatta hakettikleri yerlerde görmeyi çok isterim. Tekrar teşekkürler 🤍 </p>
+			</div>
+			<div class="gallery-item">
+				<div class="quote-avatar-author clear-fix">
+					<!-- <img src="../../../front/pic/94x94-img-1.jpg" alt=""> -->
+					<div class="author-info">Selin Öztürk<br><span>Öğrenci</span></div></div>
+				<p>Katıldığım kamplardan gayet tatmin olarak ayrılmanın verdiği güzellikle Akça hocamı tanımanın mutluluğunu yaşıyorum. Sahiden kendisi çözüm teknikleri, olayı kavratış şekilleri ve ciddi anlamda seçiçi ve özel sorularıyla, özel bir ifadeyle Ösym’ye yakın özgün sunumlarıyla eğitim sağlamakta. Ben onun gerçekten ülkede ün salacağı günler olacağına inanıyorum, kimsenin eğitim almaktan pişman olmayacağı kendini matematiğe adamış bir platform AkçaEğitim :)</p>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- / section -->

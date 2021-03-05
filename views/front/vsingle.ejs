@@ -1,0 +1,48 @@
+<% layout("layout") %>
+
+    <div class="page-title" style="padding-top: 50px; background-color:dodgerblue;">
+        <div class="grid-row">
+            <h1> <%= video.title %>  </h1>
+            <nav class="bread-crumb">
+                <a href="/">Anasayfa</a>
+                <i class="fa fa-long-arrow-right"></i>
+                <a href="#"> <%= video.title %>  </a>
+            </nav>
+        </div>
+    </div><div class="page-content woocommerce">
+		<div class="container clear-fix">
+			<div class="grid-col-row">
+				<div class="grid-col">
+					<div role="main">
+						<div  itemscope="" itemtype="http://schema.org/Product" class="product" style="display: flex; flex-direction: row;">
+							<div class="images" style="flex: 4;">
+								<div class="picture">
+									<img src="<%= video.kapak %>" data-at2x="<%= video.kapak %>" class="attachment-shop_single" alt="" title="" style="border-radius: 30px;">
+									<div class="hover-effect"></div>
+								</div>
+							</div>
+							<div class="summary entry-summary" style="flex:8">
+
+								<h2  class="product_title entry-title"><%= video.title %></h2>
+								<div class="star-rating" title="Rated 5.00 out of 5">
+									<span style="width:80%"><strong class="rating">4.00</strong> out of 5</span>
+								</div>
+								<div  itemscope="" itemtype="http://schema.org/Offer">
+									<p class="price">
+										<span class="amount"><%= video.fiyat %> <sup>₺</sup></span>
+									</p>
+								</div>
+                                <div itemprop="description">
+									<p><strong>İçerik Hakkında :</strong><br/> <%= video.desc %>  </p>
+								</div>
+                                <h2>Örnek Video</h2>
+                                <iframe style="margin-top: -100px;" src="https://player.vimeo.com/video/517555115" width="600" height="564" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+							</div>
+						</div>	
+					</div>
+					<!--Shop -->
+				</div>
+			</div>
+		</div>
+	</div>

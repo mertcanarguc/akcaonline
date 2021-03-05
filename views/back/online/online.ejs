@@ -1,0 +1,157 @@
+<% layout("../layout") %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"
+    integrity="sha512-BKbSR+cfyxLdMAsE0naLReFSLg8/pjbgfxHh/k/kUC82Hy7r6HtR5hLhobaln2gcTvzkyyehrdREdjpsQwy2Jw=="
+    crossorigin="anonymous"></script>
+<section class="panel col-md-12" id="app">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <!-- <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a> -->
+        </div>
+        <span class="panel-title">Online Sınıf Ekle</span>
+
+    </header>
+    <div class="panel-body">
+        <form action="/admin/online/insert" method="post">
+            <div class="form-group col-md-12">
+                <label>Ders Başlığı</label>
+                <input type="text" class="form-control" name="title" placeholder="Online Eğitim Başlığı">
+            </div>
+            <div class="form-group col-md-12">
+                <label>Ders Açıklaması</label>
+                <textarea name="desc" class="form-control" rows="5" placeholder="Eğitim açıklaması"></textarea>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Kampüs</label>
+                <select name="kampus" v-model="kampus" style="width: 100%;" class="form-control">
+                    <% kampus.forEach(element => { %>
+                    <option><%= element.title %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Sınıf</label>
+                <select name="sinif" style="width: 100%;" data-plugin-selectTwo class="form-control populate">
+                    <option value="*">SINIFLARA KAPALI</option>
+                    <% sinif.forEach(element => { %>
+                    <option v-if="kampus == '<%= element.kampus %>'"><%= element.title %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Öğrenci</label>
+                <select name="ogrenci" style="width: 100%;" data-plugin-selectTwo class="form-control populate">
+                    <optgroup label="Kişi seçiniz">
+                        <option>SINIFA ÖZEL</option>
+                        <% ogrenci.forEach(element => { %>
+                        <option> <%= element.ad %> <%= element.soyad %></option>
+                        <% }) %>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label>Online Ders Saati</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="fa fa-clock-o"></i>
+                    </span>
+                    <input type="text" name="saat" data-plugin-timepicker class="form-control"
+                        data-plugin-options='{ "showMeridian": false }'>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Online Ders Günü</label>
+                <select name="gun" class="form-control populate" data-plugin-selectTwo>
+                    <option>Pazartesi</option>
+                    <option>Salı</option>
+                    <option>Çarşamba</option>
+                    <option>Perşembe</option>
+                    <option>Cuma</option>
+                    <option>Cumartesi</option>
+                    <option>Pazar</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Öğretmen</label>
+                <select name="egitmen" style="width: 100%;" data-plugin-selectTwo class="form-control populate">
+                    <optgroup label="Kişi seçiniz">
+                        <% ogretmen.forEach(element => { %>
+                        <option> <%= element.ad %> <%= element.soyad %></option>
+                        <% }) %>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Branş</label>
+                <select name="brans" style="width: 100%;" data-plugin-selectTwo class="form-control populate">
+                    <optgroup label="Branş seçiniz">
+                        <% brans.forEach(element => { %>
+                        <option><%= element.title %> </option>
+                        <% }) %>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary pull-right">Ekle</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="panel col-md-12">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <!-- <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a> -->
+        </div>
+        <span class="panel-title">Online Sınıflar</span>
+    </header>
+    <div class="panel-body">
+        <table class="table table-responsive" id="datatable-default">
+            <thead>
+                <tr>
+                    <th>Başlık</th>
+                    <th>Eğitmen</th>
+                    <th>Açıklama</th>
+                    <th>Sınıf</th>
+                    <th>Kişi</th>
+                    <th>Gün</th>
+                    <th>Brans</th>
+                    <th>Saat</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% online.forEach(element => { %>
+                <tr>
+                    <td> <%= element.title %>
+                        <br>
+                        <a target="_blank" href="/egitmen/canliders/<%= element._id %>">Öğretmen</a>
+                        <a target="_blank" href="/ogrenci/canliders/<%= element._id %>">Öğrenci</a>
+                    </td>
+                    <td> <%= element.egitmen %> </td>
+                    <td> <%= element.desc %> </td>
+                    <td> <%= element.sinif %> - <%= element.kampus %> </td>
+                    <td> <%= element.ogrenci %> </td>
+                    <td> <%= element.gun %> </td>
+                    <td> <%= element.brans %> </td>
+                    <td> <%= element.saat %> </td>
+                    <td> <a href="/admin/online/delete/<%= element._id %>">SİL</a> </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            kampus: ""
+        }
+    })
+</script>

@@ -1,0 +1,63 @@
+<% layout("../layout") %>
+
+<section class="panel col-md-6">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <!-- <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a> -->
+        </div>
+
+        <h2 class="panel-title">SINIF EKLE</h2>
+    </header>
+    <div class="panel-body">
+        <form action="/admin/sinif/insert" method="post">
+            <div class="form-group col-md-6">
+                <input type="text" class="form-control" name="title" placeholder="Sınıf Adı" required>
+            </div>
+            <div class="from-group col-md-6">
+                <select name="kampus" class="form-control populate" data-plugin-selectTwo>
+                    <% kampus.forEach(element => { %>
+                     <option><%= element.title %> </option>
+                    <% }) %>
+                </select>
+            </div> 
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-success pull-right">SINIFI EKLE</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="panel col-md-6">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <!-- <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a> -->
+        </div>
+
+        <h2 class="panel-title">SINIFLAR</h2>
+    </header>
+    <div class="panel-body">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>BAŞLIK</th>
+                    <th>KAMPUS</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% sinif.forEach(element => { %>
+                <tr>
+                    <td><%= element.title %></td>
+                    <td><%= element.kampus %> </td>
+                    <td> <a class="btn btn-sm btn-danger pull-right" href="/admin/sinif/delete/<%= element._id %>">SİL</a> </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+    </div>
+</section>

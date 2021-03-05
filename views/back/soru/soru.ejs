@@ -1,0 +1,88 @@
+<% layout("../layout") %>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+
+<style>
+    .zoom:hover {
+        transform: scale(2);
+    }
+</style>
+
+<section class="panel" id="app">
+    <div class="panel-body">
+        <h3 class="text-center">Öğrenciye bakiye yükle</h3>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form action="/admin/bakiye/yukle" method="POST">
+                <div class="form-group col-md-6">
+                    <label>Öğrenci</label>
+                    <select name="ogrenci" id="ogrenci" class="form-control select2">
+                        <% ogrenci.forEach(element => { %>
+                        <option value="<%= element._id %>"><span
+                                style="text-transform: capitalize !important;"><%= element.ad %>
+                                <%= element.soyad %></span> </option>
+                        <% }) %>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Bakiye</label>
+                    <input type="number" name="bakiye" class="form-control"
+                        placeholder="Kaç soru hakkı yüklemek istiyorsunuz ?">
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-md pull-right">Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="panel">
+    <header class="panel-heading">Sorular</header>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="tables" id="datatable-default">
+                <thead>
+                    <tr>
+                        <th>Soru</th>
+                        <th>Soru Foto</th>
+                        <th>Cevap Foto</th>
+                        <th>Öğrenci</th>
+                        <th>Eğitmen</th>
+                        <th>Brans</th>
+                        <th>Tarih</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% soru.forEach(element => { %>
+                    <tr>
+                        <td style="text-transform: capitalize; min-width: 200px;"> <%= element.soru %> </td>
+                        <td style="min-width: 200px;"> <img class="zoom" style="max-width: 200px;" src="<%= element.resim %>"
+                                class="img-fluid img-responsive"> </td>
+                        <td style="min-width: 200px;"> <img class="zoom" style="max-width: 200px;" src="<%= element.cresim %>"
+                                class="img-fluid img-responsive"> </td>
+                        <td style="min-width: 150px;"> <%= element.oad %> </td>
+                        <td style="min-width: 150px;"> <% if (element.ead !== undefined) { %><%= element.ead %><% } %>
+                        </td>
+                        <td style="min-width: 150px;"> <%= element.brans %> </td>
+                        <td style="min-width: 150px;"> <b> <%= moment(element.createdAt).format("DD-MM-YYYY") %> </b>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    function zoom() {
+        $('#example').zoom();
+    }
+</script>

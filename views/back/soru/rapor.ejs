@@ -1,0 +1,121 @@
+<% layout("../layout") %>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<meta http-equiv="content-type" content="text/plain; charset=UTF-8" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+<section class="panel" id="app">
+    <div class="panel-body">
+        <h3 class="text-center">RAPOR AL</h3>
+        <form action="/admin/soru/raporla" method="post">
+            <div class="form-group col-md-4">
+                <label>Eğitmen</label>
+                <select name="egitmen" id="" class="form-control">
+                    <% egitmen.forEach(element => { %>
+                    <option value="<%= element._id %>"><%= element.ad.toUpperCase() %>
+                        <%= element.soyad.toUpperCase() %>
+                    </option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label">Zaman Aralığı</label>
+                <div class="col-md-6">
+                    <div class="input-daterange input-group" data-plugin-datepicker>
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                        <input type="text" class="form-control" name="start">
+                        <span class="input-group-addon">ile</span>
+                        <input type="text" class="form-control" name="end">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <button type="submit" class="btn btn-primary pull-right">Rapor Getir</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="panel">
+    <header class="panel-heading">
+        <span>CEVAPLANMIŞ SORULAR</span>
+    </header>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <button onclick="exportTableToExcel('datatables-default', 'rapor')">EXCELE AKTAR</button>
+            <table class="table table-hover" id="datatables-default">
+                <thead>
+                    <tr>
+                        <th>EĞİTMEN</th>
+                        <th>SORU</th>
+                        <th>ÖĞRENCİ</th>
+                        <th>SORU TARİHİ</th>
+                        <th>CEVAP TARİHİ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% soru.forEach(element => { %>
+                    <tr>
+                        <td style="width: 150px;"> <b><%= element.ead.toUpperCase() %></b> </td>
+                        <td style="text-transform: capitalize;"> <%= element.soru %> </td>
+                        <td style="width: 150px;"> <b><% if (element.oad !== undefined) { %><%= element.oad.toUpperCase() %><% } %> </b> </td>
+                        <td> <%= moment(element.createdAt).format("DD-MM-YYYY HH:mm") %> </td>
+                        <td> <%= moment(element.cDate).format("DD-MM-YYYY HH:mm") %> </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+    function exportTableToExcel(tableID, filename = '') {
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(tableID);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+        // Specify file name
+        filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+        // Create download link element
+        downloadLink = document.createElement("a");
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            // Create a link to the file
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+            // Setting the file name
+            downloadLink.download = filename;
+
+            //triggering the function
+            downloadLink.click();
+        }
+    }
+</script>
+
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            start: null,
+            end: null
+        },
+        methods() {
+
+        }
+    })
+</script>

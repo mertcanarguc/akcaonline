@@ -1,0 +1,87 @@
+<% layout("../layout") %>
+<link href="https://unpkg.com/cloudinary-video-player@1.4.3/dist/cld-video-player.min.css" rel="stylesheet">
+<script src="https://unpkg.com/cloudinary-core@2.10.3/cloudinary-core-shrinkwrap.min.js"
+    type="text/javascript"></script>
+<script src="https://unpkg.com/cloudinary-video-player@1.4.3/dist/cld-video-player.min.js"
+    type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <header class="panel-heading">
+                <span class="panel-title">
+                    <p class="text-center"><%= egitim.title %></p>
+                </span>
+            </header>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <% if (egitim.kapak) { %>
+                        <img src="<%= egitim.kapak %>" class="img-responsive" alt="">
+                        <form action="/admin/egitim/imageupload" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="egid" value="<%= egitim._id %>">
+                            <input type="file" name="dosya" class="form-control">
+                            <button type="submit" class="btn btn-primary btn-sm">Kapak Ekle</button>
+                        </form>
+                        <% }else{ %>
+                        <form action="/admin/egitim/imageupload" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="egid" value="<%= egitim._id %>">
+                            <input type="file" name="dosya" class="form-control">
+                            <button type="submit" class="btn btn-primary btn-sm">Kapak Ekle</button>
+                        </form>
+                        <% } %>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="text-center"><%= egitim.desc %></p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="text-success"><b><%= egitim.price %> ₺</b></p>
+                    </li>
+                    <li class="list-group-item"><%= egitim.egitmen %> </li>
+                    <li class="list-group-item"><% if (egitim.state == 0) { %>
+                        <p class="text-success"><b>AKTİF</b></p>
+                        <% }else{ %>
+                        <p class="text-danger"><b>PASİF</b></p>
+                        <% } %>
+                    </li>
+                    <li class="list-group-item"><%= egitim.brans %> - <%= egitim.seviye %> </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <header class="panel-heading">
+                <span class="panel-title">VİDEO EKLE</span>
+            </header>
+            <div class="panel-body">
+                <form action="/admin/video/insert" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="hidden" name="egitimid" value="<%= egitim._id %>">
+                        <input name="file" type="file"></input>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary pull-right">Ekle</button>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <header class="panel-heading">
+                <span class="panel-title">VİDEOLAR</span>
+            </header>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <% videos.forEach(element => { %>
+                    <li class="list-group-item">
+
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

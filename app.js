@@ -8,14 +8,17 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-mongoose.connect("mongodb://akca:q1w2e3@ds353748.mlab.com:53748/akcaonline",(err,data)=>{
-  if (!err) {
+mongoose.connect("mongodb+srv://xox:Q1w2e3r4.@cluster0.uxiuf.mongodb.net/akcaonline?retryWrites=true&w=majority",(err,data)=>{
+  if (err) {
+    console.log(err)
+  } else {
     console.log("Başarılı")
   }
 })
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const adminRouter = require('./routes/admin');
 
 const app = express();
 
@@ -41,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 
 const User = require('./models/user');
 passport.use(new LocalStrategy(User.authenticate()));

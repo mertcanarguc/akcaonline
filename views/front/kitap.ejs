@@ -1,83 +1,35 @@
 <% layout("layout") %>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.css"
-    integrity="sha512-mNBK16eobgxYTbRSQhlXA6hEVqfO+o31KEctFCjcn1FytkihWQGCAB4ktjdt/NiGE6q6b09aosY0det7YQa8AA=="
-    crossorigin="anonymous" />
 
-<div class="container">
-    <br><br>
-    <div class="row">
-        <div class="col-md-4">
-            <h3 class="text-center">
-                Fonksiyonlar Konu Anlatımlı Soru Bankası
-            </h3>
-            <object data="../AKCA-YAYINLARİ-ORNEK.pdf" type="application/pdf" width="100%" height="400px">
-                <iframe src="../AKCA-YAYINLARİ-ORNEK.pdf" width="100%" height="100%" style="border: none;">
-                   
-                </iframe>
-                
-            </object>
-            <p>Tanıtım PDF'ini incelemek için
-                <a href="../AKCA-YAYINLARİ-ORNEK.pdf">tıklayınız.</a>.</p>
-
-            </ul>
-        </div>
-        <div class="col-md-8">
-
-            <h1>ÖDEME VE FATURA BİLGİLERİ</h1>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label>Adınız</label>
-                    <input type="text" class="form-control" placeholder="Adınız">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Soyadınız</label>
-                    <input type="text" class="form-control" placeholder="Soyadınız">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Mail Adresiniz</label>
-                    <input type="mail" class="form-control" placeholder="Mail Adresiniz">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Telefon Numaranız</label>
-                    <input type="phone" class="form-control" placeholder="Telefon numaranız">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>İliniz</label>
-                    <input type="phone" class="form-control" placeholder="Ürünün kargolanacağı il">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>İlçeniz</label>
-                    <input type="phone" class="form-control" placeholder="Ürünün kargolanacağı ilçe">
-                </div>
-                <div class="form-group col-md-12">
-                    <label>Adresiniz</label>
-                    <textarea class="form-control" rows="5" placeholder="Adresiniz"></textarea>
-                </div>
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>KİTAP ÜCRETİ</th>
-                                <th>ARAS KARGO ÜCRETİ</th>
-                                <th>TOPLAM</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>25 ₺</td>
-                                <td>10 ₺</td>
-                                <td><b>35 ₺</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="form-group col-md-12">
-                    <button class="btn btn-primary btn-lg" style="width: 100%;">SİPARİŞ VER 35 ₺ </button>
-                </div>
-            </div>
-        </div>
+<div class="page-title" style="padding-top: 50px; background-color:dodgerblue;">
+    <div class="grid-row">
+        <h1>Kitaplarımız</h1>
+        <nav class="bread-crumb">
+            <a href="/">Anasayfa</a>
+            <i class="fa fa-long-arrow-right"></i>
+            <a href="#">Kitaplarımız</a>
+        </nav>
     </div>
 </div>
+<section class="padding-section">
+	<div class="grid-row clear-fix">
+		<h2 class="center-text">Kitaplarımız</h2>
+		<div class="grid-col-row">
+			<% kitap.forEach(element => { %>
+				<div class="grid-col grid-col-3">
+					<!-- course item -->
+					<div class="course-item">
+						<div class="course-hover">
+							<img src="<%= element.kapak %>" style="object-fit: cover;">
+							<div class="hover-bg bg-color-1"></div>
+							<a href="#">Satın Al</a>
+						</div>
+						<div class="course-name clear-fix">
+							<span class="price"> <b><%= element.price-10%> ₺</b> </span>
+						<h3><a href="#"><%= element.title %></a></h3>
+							</div>
+					</div>
+				</div>
+			<% }) %>
+		</div>
+	</div>
+</section>

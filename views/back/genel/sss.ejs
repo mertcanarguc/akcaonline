@@ -1,0 +1,57 @@
+<% layout("../layout") %>
+
+<section class="panel col-md-12">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <!-- <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a> -->
+        </div>
+
+        <h2 class="panel-title">SSS EKLE</h2>
+    </header>
+    <div class="panel-body">
+        <form action="/admin/sss/insert" method="POST">
+            <div class="form-group col-md-12">
+                <input type="text" name="soru" class="form-control" placeholder="Soru giriniz . . ." required>
+            </div>
+            <div class="form-group col-md-12">
+                <textarea name="cevap" rows="5" class="form-control" placeholder="Cevap ekleyiniz . . ." required></textarea>
+            </div>
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-success pull-right">Ekle</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="panel col-md-12">
+    <header class="panel-heading">
+        <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <!-- <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a> -->
+        </div>
+
+        <h2 class="panel-title">SSS'ler</h2>
+    </header>
+    <div class="panel-body">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>SSS</th>
+                    <th style="color:white"> - - - </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% sss.forEach(element => { %>
+                <tr>
+                    <td><%= element.soru %> </td>
+                    <td><%= element.cevap %> </td>
+                    <td><a class="btn btn-danger btn-sm pull-right" href="/admin/sss/delete/<%= element._id %>">SİL</a></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+    </div>
+</section>

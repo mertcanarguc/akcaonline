@@ -1,0 +1,47 @@
+<% layout("layout") %>
+
+    <div class="page-title" style="padding-top: 50px; background-color:dodgerblue;">
+        <div class="grid-row">
+            <h1> <%= kitap.title %>  </h1>
+            <nav class="bread-crumb">
+                <a href="/">Anasayfa</a>
+                <i class="fa fa-long-arrow-right"></i>
+                <a href="#"> <%= kitap.title %>  </a>
+            </nav>
+        </div>
+    </div><div class="page-content woocommerce">
+		<div class="container clear-fix">
+			<div class="grid-col-row">
+				<div class="grid-col grid-col-9">
+					<!-- Shop -->
+					<div role="main">
+						<div  itemscope="" itemtype="http://schema.org/Product" class="product">
+							<div class="images">
+							    <a href="" class="cws-button border-radius icon-left alt" style="width: 100%; border-radius: 30px;"> <i class="fa fa-file-pdf-o"></i> PDF GÖRÜNTÜLE</a>
+								<div class="picture">
+									<img src="<%= kitap.kapak %>" data-at2x="<%= kitap.kapak %>" class="attachment-shop_single" alt="" title="" style="border-radius: 30px;">
+									<div class="hover-effect"></div>
+								</div>
+							</div>
+							<div class="summary entry-summary">
+								<h2  class="product_title entry-title"><%= kitap.title %></h2>
+								<div class="star-rating" title="Rated 5.00 out of 5">
+									<span style="width:80%"><strong class="rating">4.00</strong> out of 5</span>
+								</div>
+								<div  itemscope="" itemtype="http://schema.org/Offer">
+									<p class="price">
+										<span class="amount"><%= kitap.price-10 %> <sup>₺</sup></span>
+									</p>
+								</div>
+								<div itemprop="description">
+									<p><strong>İçerik Hakkında :</strong><br/>Nam sit amet augue ante. Integer scelerisque dapibus odio gravida dapibus. Mauris tincidunt vitae tortor eu bibendum. Nulla ultrices eu lorem ac fermentum.</p>
+								</div>
+
+							</div>
+						</div>	
+					</div>
+					<!--Shop -->
+				</div>
+			</div>
+		</div>
+	</div>
