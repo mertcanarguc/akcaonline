@@ -16,43 +16,55 @@ exports.index = async (req, res, next) => {
         video: video
     })
 }
- 
-exports.kitaplar = async(req,res,next)=>{
+
+exports.kitaplar = async (req, res, next) => {
     let kitap = await Kitap.find({})
-    res.render("front/kitap",{
-        user:req.user,
-        kitap:kitap
+    res.render("front/kitap", {
+        user: req.user,
+        kitap: kitap
     })
 }
 
-exports.kitap = async(req,res,next)=>{
-    let kitap = await Kitap.findById({"_id":req.params.id})
-    res.render("front/ksingle",{
-        user:req.user,
+exports.kitap = async (req, res, next) => {
+    let kitap = await Kitap.findById({ "_id": req.params.id })
+    res.render("front/ksingle", {
+        user: req.user,
         kitap
     })
 }
 
-exports.videolar = async(req,res,next)=>{
+exports.videolar = async (req, res, next) => {
     let video = await Video.find({})
-    res.render("front/video",{
-        user:req.user,
-        video:video
+    res.render("front/video", {
+        user: req.user,
+        video: video
     })
 }
 
-exports.video = async(req,res,next)=>{
-    let video = await Video.findById({"_id":req.params.id})
-    res.render("front/vsingle",{
-        user:req.user,
+exports.video = async (req, res, next) => {
+    let video = await Video.findById({ "_id": req.params.id })
+    res.render("front/vsingle", {
+        user: req.user,
         video
     })
 }
 
-exports.setler = async(req,res,next)=>{
+exports.setler = async (req, res, next) => {
     let set = await Sett.find({})
+    res.render("front/setler", {
+        user: req.user,
+        set: set
+    })
+}
+
+exports.set = async (req, res, next) => {
+    let set = await Sett.findById({"_id":req.params.id})
+    let kitap = await Kitap.findById({"_id":set.kitap._id})
+    let video = await Video.findById({"_id":set.video._id})
     res.render("front/set",{
         user:req.user,
-        set:set
+        set:set,
+        video:video,
+        kitap:kitap
     })
 }

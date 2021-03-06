@@ -24,6 +24,7 @@ router.get('/video',mainController.videolar)
 router.get('/video/:id',mainController.video)
 //SETLERİMİZ
 router.get('/setlerimiz',mainController.setler)
+router.get('/set/:id',mainController.set)
 //SEPET
 router.get("/sepet",sepetController.sepet)
 
