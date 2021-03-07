@@ -68,3 +68,9 @@ exports.set = async (req, res, next) => {
         kitap:kitap
     })
 }
+
+exports.contact = async(req,res,next)=>{
+    res.render("front/contact",{
+        
+    })
+}

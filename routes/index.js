@@ -27,6 +27,7 @@ router.get('/setlerimiz',mainController.setler)
 router.get('/set/:id',mainController.set)
 //SEPET
 router.get("/sepet",sepetController.sepet)
+router.get("/iletisim",mainController.contact)
 
 router.get('/basarili', function (req, res, next) {
   res.render('front/basarili', {
@@ -36,12 +37,6 @@ router.get('/basarili', function (req, res, next) {
 
 router.get('/login', async (req, res, next) => {
   res.render("front/login")
-})
-
-router.get('/kampp', async (req, res, next) => {
-  res.render("front/live/live", {
-    user: req.user
-  })
 })
 
 router.get("/gizlilik", function (req, res, next) {
