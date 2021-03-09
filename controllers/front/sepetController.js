@@ -1,5 +1,7 @@
 const async = require("async")
+const kitap = require("../../models/egitim/kitap")
 const Sepet = require("../../models/sepet")
+const Kitap = require("../../models/egitim/kitap")
 
 exports.sepet = async(req,res,next)=>{
     res.render("front/sepet",{
@@ -8,7 +10,7 @@ exports.sepet = async(req,res,next)=>{
 }
 
 exports.list = async(req,res,next)=>{
-    let sepet = await Sepet.find({"user._id":req.user._id})
+    let sepet = await Sepet.find({ })
     if (sepet) {
         res.json({
             status:true,
@@ -20,8 +22,10 @@ exports.list = async(req,res,next)=>{
 }
 
 exports.insert = async(req,res,next)=>{
+    let kitap = await Kitap.findById({"_id":req.body.item})
     new Sepet({
-
+        user:req.user,
+        item:kitap
     }).save((err,data)=>{
         if (err) {
             res.json({status:false})

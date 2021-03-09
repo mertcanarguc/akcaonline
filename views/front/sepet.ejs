@@ -10,34 +10,36 @@
         <div id="content" role="main">
             <form action="#" method="post">
                 <table class="shop_table cart">
-                    <thead>
+                    <thead style="background-color: cornsilk;">
                         <tr>
-                            <th class="product-thumbnail">Ürünler</th>
+                            <th class="product-thumbnail"><b>Ürünler</b></th>
                             <th class="product-name">&nbsp;</th>
-                            <th class="product-price">Fiyat</th>
-                            <th class="product-subtotal">Toplam</th>
+                            <th class="product-price"><b>Fiyat</b></th>
                             <th class="product-remove">&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>								
-                        <tr class="cart_item">
+                        <tr class="cart_item" v-for="urun in products">
                             <td class="product-thumbnail">
-                                <a href="shop-single-item.html">
-                                    <img src="https://res.cloudinary.com/webmasteradam/image/upload/v1612118735/WhatsApp_Image_2021-01-31_at_21.30.17_lyspmo.jpg" data-at2x="pic/65x65-img-3@2x.jpg" class="attachment-shop_thumbnail wp-post-image" alt="">
+                                <a href="#">
+                                    <img :src="urun.item.kapak" data-at2x="pic/65x65-img-3@2x.jpg" class="attachment-shop_thumbnail wp-post-image" alt="">
                                 </a>					
                             </td>
                             <td class="product-name">
-                                <a href="#">Fonksiyonlar Konu Anlatımlı Soru Bankası </a>			
+                                <a href="#"> <b>{{urun.item.title}}</b> </a>			
                             </td>
                             <td class="product-price">
-                                <span class="amount">25<sup>₺</sup></span>			
-                            </td>
-                            <td class="product-subtotal">
-                                <span class="amount">25<sup>₺</sup></span>		
+                                <span class="amount"> {{urun.item.price}} <sup>₺</sup></span>			
                             </td>
                             <td class="product-remove">
                                 <a href="#" class="remove" title="Remove this item"></a>	
                             </td>
+                        </tr>
+                        <tr class="cart_item">
+                            <td><b>TOPLAM</b></td>
+                            <td></td>
+                            <td> <b>{{toplam}}</b> ₺</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td colspan="6" class="actions">
@@ -51,72 +53,13 @@
                 </table>
             </form>
             <hr class="divider-color" />
-            <div class="cart-collaterals">	
+            <!-- <div class="cart-collaterals">	
                 <form class="shipping_calculator" action="#" method="post">
-                    <h3>Calculate shipping</h3>
+                    <h3>Fatura ve Adres Bilgileri</h3>
                     <div class="shipping-calculator-form">
                         <p class="form-row form-row-wide">
                             <select name="calc_shipping_country" id="calc_shipping_country" class="country_to_state" rel="calc_shipping_state">
-                                <option value="">Select a country...</option>
-                                <option value="AF">Afghanistan</option>
-                                <option value="AL">Albania</option>
-                                <option value="DZ">Algeria</option>
-                                <option value="AD">Andorra</option>
-                                <option value="AO">Angola</option>
-                                <option value="AI">Anguilla</option>
-                                <option value="AQ">Antarctica</option>
-                                <option value="AG">Antigua and Barbuda</option>
-                                <option value="AR">Argentina</option>
-                                <option value="AM">Armenia</option>
-                                <option value="AW">Aruba</option>
-                                <option value="AU">Australia</option>
-                                <option value="AT">Austria</option>
-                                <option value="AZ">Azerbaijan</option>
-                                <option value="BS">Bahamas</option>
-                                <option value="BH">Bahrain</option>
-                                <option value="BD">Bangladesh</option>
-                                <option value="BB">Barbados</option>
-                                <option value="BY">Belarus</option>
-                                <option value="PW">Belau</option>
-                                <option value="BE">Belgium</option>
-                                <option value="BZ">Belize</option>
-                                <option value="BJ">Benin</option>
-                                <option value="BM">Bermuda</option>
-                                <option value="BT">Bhutan</option>
-                                <option value="BO">Bolivia</option>
-                                <option value="BQ">Bonaire, Saint Eustatius and Saba</option>
-                                <option value="BA">Bosnia and Herzegovina</option>
-                                <option value="BW">Botswana</option>
-                                <option value="BV">Bouvet Island</option>
-                                <option value="BR">Brazil</option>
-                                <option value="IO">British Indian Ocean Territory</option>
-                                <option value="VG">British Virgin Islands</option>
-                                <option value="BN">Brunei</option>
-                                <option value="BG">Bulgaria</option>
-                                <option value="BF">Burkina Faso</option>
-                                <option value="BI">Burundi</option>
-                                <option value="KH">Cambodia</option>
-                                <option value="CM">Cameroon</option>
-                                <option value="CA">Canada</option>
-                                <option value="CV">Cape Verde</option>
-                                <option value="KY">Cayman Islands</option>
-                                <option value="CF">Central African Republic</option>
-                                <option value="TD">Chad</option>
-                                <option value="CL">Chile</option>
-                                <option value="CN">China</option>
-                                <option value="CX">Christmas Island</option>
-                                <option value="CC">Cocos (Keeling) Islands</option>
-                                <option value="CO">Colombia</option>
-                                <option value="KM">Comoros</option>
-                                <option value="CG">Congo (Brazzaville)</option>
-                                <option value="CD">Congo (Kinshasa)</option>
-                                <option value="CK">Cook Islands</option>
-                                <option value="CR">Costa Rica</option>
-                                <option value="HR">Croatia</option>
-                                <option value="CU">Cuba</option>
-                                <option value="CW">CuraÇao</option>
-                                <option value="CY">Cyprus</option>
-                                <option value="CZ">Czech Republic</option>
+
                             </select>
                         <p class="form-row form-row-wide">
                             <input type="text" class="input-text" value="" placeholder="State / county" name="calc_shipping_state" id="calc_shipping_state">		
@@ -130,27 +73,27 @@
                     </div>
                 </form>
                 <div class="cart_totals ">	
-                    <h3>Cart Totals</h3>
+                    <h3>Sepet Toplamı </h3>
                     <table>
                         <tbody>
                             <tr class="cart-subtotal">
-                                <th>Cart Subtotal</th>
-                                <td><span class="amount">$12</span></td>
+                                <th>Ürün Toplamı</th>
+                                <td><span class="amount"> {{toplam}} ₺</span></td>
                             </tr>
                             <tr class="shipping">
-                                <th>Shipping</th>
+                                <th>Kargo</th>
                                 <td>	
-                                    Free Shipping		
+                                    10 s₺	
                                 </td>
                             </tr>
                             <tr class="order-total">
-                                <th>Order Total</th>
-                                <td><span class="amount">$12</span></td>
+                                <th>Sepet Toplamı</th>
+                                <td><span class="amount"> {{toplam+10}} </span></td>
                             </tr>			
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!--Shop -->
     </div>

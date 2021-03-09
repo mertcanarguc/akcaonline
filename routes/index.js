@@ -27,6 +27,8 @@ router.get('/setlerimiz',mainController.setler)
 router.get('/set/:id',mainController.set)
 //SEPET
 router.get("/sepet",sepetController.sepet)
+router.post("/sepeteekle",sepetController.insert)
+router.post("/sepetgetir",sepetController.list)
 router.get("/iletisim",mainController.contact)
 
 router.get('/basarili', function (req, res, next) {
