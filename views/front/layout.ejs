@@ -21,7 +21,6 @@
 </head>
 <body>
 	<div id="app">
-		{{deneme}}
 		<header class="only-color">
 			<!-- header top panel -->
 			<div class="page-header-top">
@@ -31,7 +30,7 @@
 						<a href="mailto:info@akcaonline.com" class="email"><i class="fa fa-envelope-o"></i>info@akcaonline.com</a>
 					</address>
 					<div class="header-top-panel">
-						<a href="#" class="fa fa-shopping-cart"></a>
+						<a href="/sepet" class="fa fa-shopping-cart"></a>
 						<a href="/login" class="fa fa-user login-icon"></a>
 						<div id="top_social_links_wrapper">
 							<div class="share-toggle-button"><i class="share-icon fa fa-share-alt"></i></div>
@@ -218,8 +217,21 @@
 				axios.post("/sepetgetir").then(response=>{
 					response.data.sepet.forEach(element => {
 						this.products.push(element)
-						this.toplam += element.item.price
+						this.toplam += element.item.fiyat
 					});
+				})
+			},
+			sepetSil(data){
+				axios.post("/sepetsil",{
+					sepet:data
+				}).then(response=>{
+					if (response.data.status == true) {
+						swal("Başarılı !", "Ürün sepetten başarıyla çıkarıldı.","success").then(()=>{
+							setTimeout(() => {
+								window.location = "/sepet"
+							}, 500);
+						})	
+					} 
 				})
 			}
 		},

@@ -29,10 +29,10 @@
                                 <a href="#"> <b>{{urun.item.title}}</b> </a>			
                             </td>
                             <td class="product-price">
-                                <span class="amount"> {{urun.item.price}} <sup>₺</sup></span>			
+                                <span class="amount"> {{urun.item.fiyat}} <sup>₺</sup></span>			
                             </td>
                             <td class="product-remove">
-                                <a href="#" class="remove" title="Remove this item"></a>	
+                                <a @click="sepetSil(urun._id)" class="remove" title="Remove this item"></a>	
                             </td>
                         </tr>
                         <tr class="cart_item">

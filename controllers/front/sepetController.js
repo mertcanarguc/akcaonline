@@ -36,7 +36,7 @@ exports.insert = async(req,res,next)=>{
 }
 
 exports.delete = async(req,res,next)=>{
-    let sepet = await Sepet.findById({"_id":req.params.id})
+    let sepet = await Sepet.findById({"_id":req.body.sepet})
     sepet.remove((err,data)=>{
         if (err) {
             res.json({status:false})

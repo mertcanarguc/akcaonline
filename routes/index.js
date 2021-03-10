@@ -29,6 +29,7 @@ router.get('/set/:id',mainController.set)
 //SEPET
 router.get("/sepet",sepetController.sepet)
 router.post("/sepeteekle",sepetController.insert)
+router.post("/sepetsil",sepetController.delete)
 router.post("/sepetgetir",sepetController.list)
 router.get("/iletisim",mainController.contact)
 //SATIŞ
