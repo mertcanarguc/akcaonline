@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const kitapSchema = new Schema({
     title: { type: String },
     desc: { type: String },
-    price: { type: Number },
+    fiyat: { type: Number },
     kapak: { type: String },
     url: { type: String },
     createdAt: {

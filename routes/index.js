@@ -5,6 +5,7 @@ const User = require("../models/user")
 const passport = require("passport");
 const mainController = require("../controllers/front/mainController")
 const sepetController = require("../controllers/front/sepetController")
+const satisController = require("../controllers/front/satisController")
 
 function checkAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
@@ -30,6 +31,8 @@ router.get("/sepet",sepetController.sepet)
 router.post("/sepeteekle",sepetController.insert)
 router.post("/sepetgetir",sepetController.list)
 router.get("/iletisim",mainController.contact)
+//SATIŞ
+router.post("/payment",satisController.payment)
 
 router.get('/basarili', function (req, res, next) {
   res.render('front/basarili', {

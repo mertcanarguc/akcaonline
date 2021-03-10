@@ -26,15 +26,16 @@
 							<div class="summary entry-summary">
 								<h2  class="product_title entry-title"><%= kitap.title %></h2>
 								<div class="star-rating" title="Rated 5.00 out of 5">
-									<span style="width:80%"><strong class="rating">4.00</strong> out of 5</span>
+									<span style="width:100%"><strong class="rating">4.00</strong> out of 5</span>
 								</div>
 								<div  itemscope="" itemtype="http://schema.org/Offer">
-									<p class="price">
-										<span class="amount"><%= kitap.price-10 %> <sup>₺</sup></span>
+									<p class="fiyat" style="font-size:30pt">
+										<span class="amount"><%= kitap.fiyat-10 %> <sup>₺</sup></span>
 									</p>
 								</div>
+								<br>
 								<div itemprop="description">
-									<p><strong>İçerik Hakkında :</strong><br/>Nam sit amet augue ante. Integer scelerisque dapibus odio gravida dapibus. Mauris tincidunt vitae tortor eu bibendum. Nulla ultrices eu lorem ac fermentum.</p>
+									<p><strong>İçerik Hakkında :</strong><br/> <%= kitap.desc %>  </p>
 									<a @click="sepeteEkle('<%=kitap._id%>')" class="cws-button border-radius icon-left alt" style="border-radius: 30px;"> <i class="fa fa-shopping-cart"></i>SEPET EKLE</a>
 								</div>
 							</div>
