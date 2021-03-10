@@ -3,6 +3,7 @@ const Schema = mongoose.Schema
 
 const setSchema = new Schema({
     title:String,
+    tur: { type: Number, default: 3 },
     fiyat:Number,
     kitap:Object,
     video:Object,

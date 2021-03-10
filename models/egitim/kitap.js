@@ -6,6 +6,7 @@ const kitapSchema = new Schema({
     desc: { type: String },
     fiyat: { type: Number },
     kapak: { type: String },
+    tur: { type: Number, default: 1 },
     url: { type: String },
     createdAt: {
         type: Date,
