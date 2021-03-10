@@ -7,17 +7,17 @@ const Satis = require("../../models/kasa/satis")
 const session = require("express-session")
 const moment = require("moment")
 
-var iyzipay = new Iyzipay({
-    apiKey: "ZWZp5hKb8tmVgjo8HgBU77X7coIozMtC",
-    secretKey: "iLBgeqekuRTvhBYLlRunGWX1Do0CAeah",
-    uri: 'https://api.iyzipay.com'
-});
-
 // var iyzipay = new Iyzipay({
-//     apiKey: "sandbox-2RcLCpekkDh8ZOdLyMxEeJ1h6IaaZDxv",
-//     secretKey: "sandbox-I1pD3ciPcbTTS6aV67uUl4AyJttQe9VG",
-//     uri: 'https://sandbox-api.iyzipay.com'
+//     apiKey: "ZWZp5hKb8tmVgjo8HgBU77X7coIozMtC",
+//     secretKey: "iLBgeqekuRTvhBYLlRunGWX1Do0CAeah",
+//     uri: 'https://api.iyzipay.com'
 // });
+
+var iyzipay = new Iyzipay({
+    apiKey: "sandbox-9149MirlETesq7Y4eFSmzbmbrIKdxA59",
+    secretKey: "sandbox-cjYLpecOwRTs88JIXMxmnx76woGeR3Jd",
+    uri: 'https://sandbox-api.iyzipay.com'
+});
 
 
 exports.kitapal = async(req, res, next) => {
