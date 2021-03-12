@@ -1,0 +1,23 @@
+<% layout("layout") %>
+    <div class="container">
+
+        <div class="grid-col-row clear-fix">
+            <div class="grid-col grid-col-4">
+                <section>
+                    <h2 class="text-center">Fonksiyonlar Kitabı - Soru Çözümleri</h2>
+                    <!-- accordions -->
+                    <div class="accordions">
+                        <% evideo.forEach(element => { %>
+                            <div class="content-title"><%= element.title %></div>
+                        <% }) %>
+                    </div>
+                    <!--/accordions -->
+                </section>
+            </div>
+            <div class="grid-col grid-col-8">
+                <section>
+                    <iframe src="https://player.vimeo.com/video/517594258" style="width: 60vw; height: 500px;" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                </section>
+            </div>
+        </div>
+    </div>

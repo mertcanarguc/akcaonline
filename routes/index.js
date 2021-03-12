@@ -6,6 +6,7 @@ const passport = require("passport");
 const mainController = require("../controllers/front/mainController")
 const sepetController = require("../controllers/front/sepetController")
 const satisController = require("../controllers/front/satisController")
+const videoController = require("../controllers/front/videoController")
 
 function checkAuthentication(req, res, next) {
   if (req.isAuthenticated()) {
@@ -17,6 +18,9 @@ function checkAuthentication(req, res, next) {
 }
 //ANASAYFAMIZ
 router.get('/', mainController.index);
+
+router.get('/videolist/:id',videoController.single)
+
 //KİTAPLARIMIZ
 router.get('/kitaplar',mainController.kitaplar)
 router.get('/kitap/:id',mainController.kitap)
