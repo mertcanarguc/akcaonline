@@ -41,17 +41,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>İlçe</label>
-                        <select class="form-control" name="ilce" v-model="ilcee" v-for="item in sehir" v-if="item.il == selected">
-                            <option v-for="ilce in item.ilceleri" :value="ilce">{{ilce}}</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
                         <label>Öğrenim Durumu</label>
                         <select name="okul" class="form-control">
                             <option>Orta Okul</option>
                             <option>Lise</option>
-                            <option>Üniversite</option>
+                            <option>Üniversite Hazırlık</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -65,6 +59,13 @@
                         <span class="input-icon">
                             <i class="fa fa-lock"></i>
                         </span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkbox" value="None" name="check">
+                            <label for="checkbox"></label>
+                        </div>
+                        Kullanıcı Sözleşmesini okudum. Onaylıyorum.
                     </div>
                     <button type="submit" class="button-fullwidth cws-button bt-color-3 border-radius alt">KAYIT OL</button>
                 </form>
